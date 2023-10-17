@@ -10,11 +10,15 @@ db.createcollection("users")--create a colllection with name users
 CRUD-create Read Update Delete
 
 //create
+
+
 db.collection.insertOne({name:"Manu"}) //create new document in collection 'users'
 
 db.collection.insertMany({name:"Manu"}) //create multiple new document in collection 'users'
 
-//Readdb.users.find()//get all documents from user'scollection
+//Read
+
+db.users.find()//get all documents from user'scollection
 db.users.find(<filter object>) //find all object that matches the filter object
 
 db.users.find({age:35})
@@ -27,3 +31,36 @@ db.users.find({age:35},{name:1,_id:0}) //1 means get that field 0 means donot ge
 db.users.findOne({name:"rahul"})  //only returns the first documents that matches the filter obj
 
 db.users.countDocuments(<filter object>) //returns documents matching the filter obj , if obj empty returns all documents count
+
+//Update
+
+db.users.updateOne({name:"priya"},{$set : {name:"priya v"}})   //replaces priya with priya v, considers only first matches
+
+
+db.users.updateMany({name:"priya" v},{$set : {name:"priya v s"}}) // erplaces priya v with priya v s, considers all matches
+
+
+db.users.updateMany({age:20}, {$inc:{age:5}})   //increment all age 20 values 25 by adding 5
+
+
+db.users.replaceOne({name:"priya v s"},{name:"priya p"}); //replaces the first match , replaces the complete document instead of replacing the field
+
+
+
+//delete
+
+db.users.deleteOne({name:"priya"})  //delete first document that matches the first object
+
+db.users.deleteMany({age:75})   //deletes all documents matching the filter obj
+
+ //additional filters
+
+ db.userss.find({name:{$eq:"Balu"}})  // get all the users with the name Balu
+
+ db.users.find({name:{$ne:"balu"}})  // get all users  whose name not balu
+
+ db.users.find({age:{$gt:12}}) //get all users whose age graeter than 12(here not print age=12 users details)
+
+ db.users.find({age:{$gtte:10}})   //get all users whose age grater than or equal to 10
+
+
